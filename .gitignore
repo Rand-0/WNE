@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 .git
+.Rbuildignore
 tdo
 WNE.Rproj

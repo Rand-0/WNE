@@ -6,12 +6,12 @@ linktest <- function(object)
     validateObject(model_check)
   
   #Linktest
-  y = model$y
-  yhat = log(model$fitted.values/(1 - model$fitted.values))
+  y = object$y
+  yhat = log(object$fitted.values/(1 - object$fitted.values))
   yhat2 = yhat^2
   
   #Auxiliary regression
-  aux.reg = glm(y~yhat+yhat2, family=binomial(link=model$family$link))
+  aux.reg = glm(y~yhat+yhat2, family=binomial(link=object$family$link))
   
   results = list(coefficients = aux.reg$coefficients,
                  std.err = sqrt(diag(vcov(aux.reg))),
