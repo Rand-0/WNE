@@ -12,7 +12,12 @@ linktest <- function(object)
   
   #Auxiliary regression
   aux.reg = glm(y~yhat+yhat2, family=binomial(link=model$family$link))
-  show(summary(aux.reg))
   
-  return(aux.reg)
+  results = list(coefficients = aux.reg$coefficients,
+                 std.err = sqrt(diag(vcov(aux.reg))),
+                 df = aux.reg$df.residual)
+  
+  class(results) = "linktest"
+  
+  return(results)
 }
