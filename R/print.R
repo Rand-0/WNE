@@ -8,7 +8,7 @@ print.linktest <- function(object)
   values$tval <- round(values$Estimate / values$std.err, 3)
   
   values$pval <- 2 * (1 - pt(abs(values$tval), object$df))
-  values$pval <- ifelse(values$pval < 1e-3, format(values$pval, scientific = FALSE, digits = 3), round(values$pval, 3))
+  values$pval <- sprintf("%.3f", as.numeric(values$pval))
   
   values$Stars <- sapply(values$pval, function(p) {
     if (as.numeric(p) < 0.001) return(" ***")
@@ -42,7 +42,9 @@ print.linktest <- function(object)
 #' @export
 print.MEff <- function(object)
 {
-  print(object$MEff, na.print = ".")
+  cat(object$Type)
+  cat("\n---\n")
+  print(round(object$MEff, 7), na.print = ".")
   if(object$Dummies)
   {
     cat("---\n")
