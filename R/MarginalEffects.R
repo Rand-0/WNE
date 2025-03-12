@@ -50,7 +50,7 @@ marginaleffects.glm <- function(model, characteristics, ...)
   }
   
   # independent variables
-  indeps = model$model[,-1]
+  indeps = model$model[-1]
   # dummy variables indices
   dvi = rep(0, times=ncol(indeps))
   for(i in 1:ncol(indeps)) {
@@ -288,7 +288,7 @@ marginaleffects.polr <- function(model, characteristics, ...)
   
   # dummy variables marginal effects
   # independent variables
-  indeps = model$model[,-1]
+  indeps = model$model[-1]
   # dummy variables indices
   dvi = rep(0, times=ncol(indeps))
   for(i in 1:ncol(indeps)) {
