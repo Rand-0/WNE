@@ -62,12 +62,15 @@ marginaleffects.glm <- function(model, characteristics, ...)
     }
   } 
   dvi = which(dvi==1)+1
+  
+  x0 = characteristics
+  
   # plus one because of the constant in the model
   if(length(dvi)>0){ 
-    x0 = characteristics
     x0[dvi] = 0
-    x1 = x0
   }
+  
+  x1 = x0
   
   # Marginal effects
   if(model$family$link=="probit") {
@@ -300,11 +303,15 @@ marginaleffects.polr <- function(model, characteristics, ...)
     }
   } 
   dvi = which(dvi==1)
+  
+  x0 = x
+  
   if(length(dvi)>0){ 
-    x0 = x
     x0[dvi] = 0
-    x1 = x0
   }
+  
+  x1 = x0
+  
   # Marginal effects of the dummy variables
   if(length(dvi)>0) {
     for(i in 1:length(dvi)) {
